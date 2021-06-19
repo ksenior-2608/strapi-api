@@ -34,7 +34,8 @@ module.exports = {
     },
 
     async create(ctx) {
-        let newClientEmail = modifyEmail(ctx.request.body.email);
+        ctx.request.body.email = modifyEmail(ctx.request.body.email);
+        let newClientEmail = ctx.request.body.email;
         // console.log(newClientEmail);
         let entity = await strapi.query("client").findOne({ email: newClientEmail });
         // console.log(entity);
